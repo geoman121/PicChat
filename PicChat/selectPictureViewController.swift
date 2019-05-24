@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class selectPictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -53,18 +54,65 @@ class selectPictureViewController: UIViewController, UIImagePickerControllerDele
         
         if let message = messageTextField.text{
             if imageAdded && message != ""{
-                //next view controller
+                //upload images
+                let imagesFolder = Storage.storage().reference().child("images")
+                
+                if let  image = imageView.image{
+                    if let imageData =  image.jpegData(compressionQuality: 0.1){
+                        
+                        //setting unique name for image
+                        let imageName = imagesFolder.child("\(NSUUID().uuidString).jpg")
+                        imageName.putData(imageData, metadata: nil)  { (metadata, error) in
+                            if let error = error {
+                                self.presentAlert(alert: error.localizedDescription)
+                            }else{
+                                //next view controller
+                                
+                                
+                                imageName.downloadURL(completion: { (url, err) in
+                                    if let err = err {
+                                        print("Failed to get downloadurl", err)
+                                        return
+                                    }
+                                    else{
+                                        if let downloadURL = url?.absoluteString {
+                                            print("Successfully uploaded profile image", downloadURL)
+                                        self.performSegue(withIdentifier: "selectReciver ", sender: downloadURL)
+                                            
+                                        }
+                                   
+                                    }
+                                })
+                        }
+                        
+                        }
+                }
             }
+            
+        }
             else{
                 
-                let alertVC = UIAlertController(title: "Error", message: "You Must Provide an image and a Message.", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-                    alertVC.dismiss(animated: true, completion: nil)
-                }
-                alertVC.addAction(okAction)
-                present(alertVC, animated: true, completion: nil)
+                presentAlert(alert: "You Must Provide an image and a Message.")
                 
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let downloadURL = sender as? String{
+            if let selectVC = segue.destination as? selectRecipientTableViewController{
+                selectVC.downloadURL = downloadURL
+                selectVC.snapDecription = messageTextField.text!
+            }
+        }
+    }
+    
+    func presentAlert(alert:String) {
+        let alertVC = UIAlertController(title: "Error", message: alert, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            alertVC.dismiss(animated: true, completion: nil)
+        }
+        alertVC.addAction(okAction)
+        present(alertVC, animated: true, completion: nil)
     }
 }

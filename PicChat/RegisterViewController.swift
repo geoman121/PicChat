@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
 
@@ -28,7 +29,11 @@ class RegisterViewController: UIViewController {
                 self.presentAlert(alert: (error?.localizedDescription)! )
             } else {
                 print("Registeraion successful :)")
+                if let user = user {
+                    Database.database().reference().child("users").child(user.user.uid).child("email").setValue(user.user.email)
+                
                 self.performSegue(withIdentifier: "moveToSnaps", sender: nil)
+                }
             }
         })
     }

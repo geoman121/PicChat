@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5E55731D22981A5E00F0353C /* snapsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E55731C22981A5E00F0353C /* snapsTableViewController.swift */; };
 		5E55731F22981EA200F0353C /* selectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E55731E22981EA200F0353C /* selectPictureViewController.swift */; };
+		5E55732122983CE700F0353C /* selectRecipientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E55732022983CE700F0353C /* selectRecipientTableViewController.swift */; };
+		5E5573232298657900F0353C /* viewSnapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5573222298657900F0353C /* viewSnapViewController.swift */; };
 		5E65737F2296E67A0034C59D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65737E2296E67A0034C59D /* AppDelegate.swift */; };
 		5E6573812296E67A0034C59D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6573802296E67A0034C59D /* LoginViewController.swift */; };
 		5E6573842296E67A0034C59D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6573822296E67A0034C59D /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		5E55731C22981A5E00F0353C /* snapsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snapsTableViewController.swift; sourceTree = "<group>"; };
 		5E55731E22981EA200F0353C /* selectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectPictureViewController.swift; sourceTree = "<group>"; };
+		5E55732022983CE700F0353C /* selectRecipientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectRecipientTableViewController.swift; sourceTree = "<group>"; };
+		5E5573222298657900F0353C /* viewSnapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewSnapViewController.swift; sourceTree = "<group>"; };
 		5E65737B2296E67A0034C59D /* PicChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65737E2296E67A0034C59D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E6573802296E67A0034C59D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				5E6573962297027C0034C59D /* RegisterViewController.swift */,
 				5E55731C22981A5E00F0353C /* snapsTableViewController.swift */,
 				5E55731E22981EA200F0353C /* selectPictureViewController.swift */,
+				5E55732022983CE700F0353C /* selectRecipientTableViewController.swift */,
+				5E5573222298657900F0353C /* viewSnapViewController.swift */,
 				5E6573822296E67A0034C59D /* Main.storyboard */,
 				5E6573852296E67C0034C59D /* Assets.xcassets */,
 				5E6573872296E67C0034C59D /* LaunchScreen.storyboard */,
@@ -181,6 +187,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PicChat/Pods-PicChat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -190,6 +197,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -228,7 +236,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6573972297027C0034C59D /* RegisterViewController.swift in Sources */,
+				5E55732122983CE700F0353C /* selectRecipientTableViewController.swift in Sources */,
 				5E55731D22981A5E00F0353C /* snapsTableViewController.swift in Sources */,
+				5E5573232298657900F0353C /* viewSnapViewController.swift in Sources */,
 				5E6573812296E67A0034C59D /* LoginViewController.swift in Sources */,
 				5E55731F22981EA200F0353C /* selectPictureViewController.swift in Sources */,
 				5E65737F2296E67A0034C59D /* AppDelegate.swift in Sources */,
