@@ -16,6 +16,7 @@ class selectPictureViewController: UIViewController, UIImagePickerControllerDele
     
     var imagePicker : UIImagePickerController?
     var imageAdded = false
+    var imageName = "\(NSUUID().uuidString).jpg"
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,15 +62,15 @@ class selectPictureViewController: UIViewController, UIImagePickerControllerDele
                     if let imageData =  image.jpegData(compressionQuality: 0.1){
                         
                         //setting unique name for image
-                        let imageName = imagesFolder.child("\(NSUUID().uuidString).jpg")
-                        imageName.putData(imageData, metadata: nil)  { (metadata, error) in
+                        let imageLabel = imagesFolder.child(imageName)
+                        imageLabel.putData(imageData, metadata: nil)  { (metadata, error) in
                             if let error = error {
                                 self.presentAlert(alert: error.localizedDescription)
                             }else{
                                 //next view controller
                                 
                                 
-                                imageName.downloadURL(completion: { (url, err) in
+                                imageLabel.downloadURL(completion: { (url, err) in
                                     if let err = err {
                                         print("Failed to get downloadurl", err)
                                         return
@@ -103,6 +104,7 @@ class selectPictureViewController: UIViewController, UIImagePickerControllerDele
             if let selectVC = segue.destination as? selectRecipientTableViewController{
                 selectVC.downloadURL = downloadURL
                 selectVC.snapDecription = messageTextField.text!
+                selectVC.imageName = imageName
             }
         }
     }

@@ -20,6 +20,18 @@ class snapsTableViewController: UITableViewController {
             Database.database().reference().child("users").child(currentUserUid).child("snaps").observe(.childAdded) { (snapshot) in
             self.snaps.append(snapshot)
             self.tableView.reloadData()
+                
+                Database.database().reference().child("users").child(currentUserUid).child("snaps").observe(.childRemoved, with: { (snapshot) in
+                    
+                    var index = 0
+                    for snap in self.snaps{
+                        if snapshot.key == snap.key{
+                            self.snaps.remove(at: index)
+                        }
+                        index += 1
+                    }
+                    self.tableView.reloadData()
+                })
             }
         }
      
@@ -36,7 +48,11 @@ class snapsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
+        if snaps.count == 0{
+            return 1
+        }else{
         return snaps.count
+    }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -57,12 +73,17 @@ class snapsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+
+        if snaps.count == 0{
+            cell.textLabel?.text = "You have no pics..!"
+        }else{
         let snap = snaps[indexPath.row]
 
         if let snapDictionary = snap.value as? NSDictionary{
             if let fromEmail = snapDictionary["from"] as? String{
                 cell.textLabel?.text = fromEmail
             }
+        }
         }
         return cell
     }

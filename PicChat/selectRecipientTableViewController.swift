@@ -14,6 +14,7 @@ class selectRecipientTableViewController: UITableViewController {
 
     var snapDecription = ""
     var downloadURL = ""
+    var imageName = "" 
     var users : [User] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +54,7 @@ class selectRecipientTableViewController: UITableViewController {
         
         let user = users[indexPath.row]
         if let fromEmail = Auth.auth().currentUser?.email{
-            let snap = ["from":fromEmail, "description": snapDecription, "imageURL": downloadURL ]
+            let snap = ["from":fromEmail, "description": snapDecription, "imageURL": downloadURL, "imageName": imageName ]
             Database.database().reference().child("users").child(user.uid).child("snaps").childByAutoId().setValue(snap)
             navigationController?.popToRootViewController(animated: true)
         }
